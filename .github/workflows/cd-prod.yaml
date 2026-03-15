@@ -1,10 +1,9 @@
 name: Deploy PROD
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
 

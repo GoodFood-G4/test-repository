@@ -1,11 +1,10 @@
 name: Shared CI Pipeline
 
 on:
-  workflow_call:
-    outputs:
-      artifact-name:
-        description: "Name of the build artifact"
-        value: build-artifact
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
 
