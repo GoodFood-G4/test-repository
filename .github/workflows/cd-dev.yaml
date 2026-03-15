@@ -9,6 +9,7 @@ on:
 jobs:
 
   ci:
+    name: Build and Test
     uses: ./.github/workflows/ci.yaml
 
   deploy:

@@ -9,6 +9,7 @@ on:
 jobs:
 
   ci:
+    name: Build and Test
     uses: ./.github/workflows/ci.yaml
 
   deploy:
@@ -38,6 +39,6 @@ jobs:
             github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: "deploy-prod.yaml",
+              workflow_id: "cd-prod.yaml",
               ref: "sim"
             })
