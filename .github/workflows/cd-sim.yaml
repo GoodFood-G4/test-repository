@@ -36,8 +36,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: main
-          head: sim
           title: "Promote pre-production to production"
           body: |
             Automatically created after successful PRE-PROD deployment.
-          reviewers: team-leads
+          delete-branch: true
