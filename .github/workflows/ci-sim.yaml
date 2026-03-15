@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    uses: ./.github/workflows/build-project.yml
+    uses: ./.github/workflows/build-project.yaml
 
   test:
     name: Test

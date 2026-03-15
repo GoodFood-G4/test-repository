@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-project.yml
+    uses: ./.github/workflows/build-project.yaml
 
   deploy:
     name: Deploy to PRE-PROD
