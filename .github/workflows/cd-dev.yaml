@@ -9,16 +9,16 @@ jobs:
   create-pr:
     name: Create PR for PRE-PROD
     runs-on: ubuntu-latest
-    environment: pre-prod
+    environment: dev
 
     steps:
       - uses: actions/checkout@v6
 
-      - name: Create PR from sim to main
+      - name: Create PR from develop to sim
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Promote pre-production to production"
+          title: "Promote develop to sim"
           body: |
-            Automatically created after successful PRE-PROD deployment.
+            Automatically created after successful develop pull request.
           delete-branch: true
