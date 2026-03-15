@@ -6,6 +6,9 @@ on:
       - sim
 
 jobs:
+  build:
+    uses: ./.github/workflows/build-project.yml
+
   deploy:
     name: Deploy to PRE-PROD
     runs-on: ubuntu-latest
