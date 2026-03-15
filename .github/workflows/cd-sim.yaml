@@ -35,12 +35,9 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: auto/sim-to-main
           base: main
+          head: sim
           title: "Promote pre-production to production"
           body: |
-            This PR was automatically created after a successful PRE-PROD deployment.
-
-            Changes tested in **sim (pre-production)** are ready for production.
-
-          delete-branch: true
+            Automatically created after successful PRE-PROD deployment.
+          reviewers: team-leads
