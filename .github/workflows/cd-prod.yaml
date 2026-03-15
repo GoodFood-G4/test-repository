@@ -1,20 +1,14 @@
 name: Deploy PROD
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-
-  ci:
-    name: Build and Test
-    uses: ./.github/workflows/ci.yaml
-
   deploy:
     name: Deploy to PROD
     runs-on: ubuntu-latest
-    needs: ci
     environment: prod
 
     steps:

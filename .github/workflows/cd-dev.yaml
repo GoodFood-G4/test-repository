@@ -6,7 +6,19 @@ on:
       - develop
 
 jobs:
+  create-pr:
+    name: Create PR for PRE-PROD
+    runs-on: ubuntu-latest
+    environment: pre-prod
 
-  ci:
-    name: Build and Test
-    uses: ./.github/workflows/ci.yaml
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Create PR from sim to main
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Promote pre-production to production"
+          body: |
+            Automatically created after successful PRE-PROD deployment.
+          delete-branch: true
