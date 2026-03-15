@@ -1,4 +1,4 @@
-name: Shared CI Pipeline
+name: Build & Test DEV
 
 on:
   pull_request:
@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
     uses: ./.github/workflows/build-project.yaml
 

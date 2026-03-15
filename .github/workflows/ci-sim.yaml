@@ -1,4 +1,4 @@
-name: Shared CI Pipeline
+name: Build & Test SIM
 
 on:
   pull_request:
