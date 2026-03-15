@@ -1,4 +1,4 @@
-name: Shared CI Pipeline
+name: Build & Test PROD
 
 on:
   pull_request:
@@ -7,32 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
-    name: Build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Simulate build
-        run: |
-          echo "======================"
-          echo "BUILD STAGE"
-          echo "Installing dependencies"
-          echo "Compiling project"
-          echo "Generating artifact"
-          echo "======================"
-
-      - name: Create artifact
-        run: echo "Mock build artifact" > artifact.txt
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: artifact.txt
-
+    uses: ./.github/workflows/build-project.yml
 
   test:
     name: Test

@@ -6,6 +6,9 @@ on:
       - main
 
 jobs:
+  build:
+    uses: ./.github/workflows/build-project.yml
+
   deploy:
     name: Deploy to PROD
     runs-on: ubuntu-latest
