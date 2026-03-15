@@ -1,0 +1,31 @@
+name: Deploy PREPROD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy to PRE-PROD
+    runs-on: ubuntu-latest
+    needs: ci
+    environment: pre-prod
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Simulate PREPROD deployment
+        run: |
+          echo "======================"
+          echo "DEPLOYMENT - PREPROD"
+          echo "Deploying to staging environment"
+          echo "Running smoke tests"
+          echo "======================"

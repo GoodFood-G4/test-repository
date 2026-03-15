@@ -1,0 +1,56 @@
+name: Shared CI Pipeline
+
+on:
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: "Name of the build artifact"
+        value: build-artifact
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Simulate build
+        run: |
+          echo "======================"
+          echo "BUILD STAGE"
+          echo "Installing dependencies"
+          echo "Compiling project"
+          echo "Generating artifact"
+          echo "======================"
+
+      - name: Create artifact
+        run: echo "Mock build artifact" > artifact.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: artifact.txt
+
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Simulate tests
+        run: |
+          echo "======================"
+          echo "TEST STAGE"
+          echo "Running unit tests"
+          echo "Running integration tests"
+          echo "Running quality checks"
+          echo "All tests passed"
+          echo "======================"
