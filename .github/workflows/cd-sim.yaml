@@ -6,10 +6,6 @@ on:
       - sim
   workflow_dispatch:
 
-permissions:
-  actions: write
-  contents: read
-
 jobs:
 
   ci:
@@ -35,14 +31,16 @@ jobs:
           echo "Running smoke tests"
           echo "======================"
 
-      - name: Trigger PROD workflow
-        uses: actions/github-script@v7
+      - name: Create PR from sim to main
+        uses: peter-evans/create-pull-request@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: "cd-prod.yaml",
-              ref: "sim"
-            })
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: auto/sim-to-main
+          base: main
+          title: "Promote pre-production to production"
+          body: |
+            This PR was automatically created after a successful PRE-PROD deployment.
+
+            Changes tested in **sim (pre-production)** are ready for production.
+
+          delete-branch: true
