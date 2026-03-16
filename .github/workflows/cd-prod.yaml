@@ -8,11 +8,12 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build-project.yaml
-
+    
   deploy:
     name: Deploy to PROD
     runs-on: ubuntu-latest
     environment: prod
+    if: github.ref == 'refs/heads/main' 
 
     steps:
       - uses: actions/download-artifact@v4
