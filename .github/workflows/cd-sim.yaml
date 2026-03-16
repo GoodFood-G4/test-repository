@@ -15,8 +15,6 @@ jobs:
     environment: pre-prod
 
     steps:
-      - uses: actions/checkout@v6
-
       - uses: actions/download-artifact@v4
         with:
           name: build-artifact
@@ -28,12 +26,3 @@ jobs:
           echo "Deploying to staging environment"
           echo "Running smoke tests"
           echo "======================"
-
-      - name: Create PR from sim to main
-        uses: peter-evans/create-pull-request@v8
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: "Promote pre-production to production"
-          body: |
-            Automatically created after successful PRE-PROD deployment.
-          delete-branch: true
