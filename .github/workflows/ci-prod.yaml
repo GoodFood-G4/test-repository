@@ -1,28 +1,31 @@
-name: Deploy PROD
+name: Build & Test PROD
 
 on:
-  push:
+  pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     uses: ./.github/workflows/build-project.yaml
 
-  deploy:
-    name: Deploy to PROD
+  test:
+    name: Test
     runs-on: ubuntu-latest
-    environment: prod
+    needs: build
 
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: build-artifact
 
-      - name: Simulate PROD deployment
+      - name: Simulate tests
         run: |
           echo "======================"
-          echo "DEPLOYMENT - PROD"
-          echo "Deploying release to production servers"
-          echo "Restarting production services"
+          echo "TEST STAGE"
+          echo "Running unit tests"
+          echo "Running integration tests"
+          echo "Running quality checks"
+          echo "All tests passed"
           echo "======================"
