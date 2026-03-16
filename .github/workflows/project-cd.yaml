@@ -1,0 +1,29 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+      - sim
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-project.yaml
+
+  deploy:
+    name: Deploy to ${{ vars.GITHUB_ENV }}
+    runs-on: ubuntu-latest
+    environment: ${{ vars.GITHUB_ENV }}
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Simulate ${{ vars.GITHUB_ENV }} deployment
+        run: |
+          echo "======================"
+          echo "DEPLOYMENT - ${{ vars.GITHUB_ENV }}"
+          echo "Deploying release to server ${{ vars.WEB_APP_NAME }}"
+          echo "Restarting services"
+          echo "======================"

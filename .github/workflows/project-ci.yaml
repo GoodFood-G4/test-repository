@@ -1,8 +1,10 @@
-name: Build & Test PROD
+name: Continuous Integration
 
 on:
   pull_request:
     branches:
+      - develop
+      - sim
       - main
   workflow_dispatch:
 
