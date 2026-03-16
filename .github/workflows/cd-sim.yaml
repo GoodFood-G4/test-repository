@@ -13,6 +13,7 @@ jobs:
     name: Deploy to PRE-PROD
     runs-on: ubuntu-latest
     environment: pre-prod
+    if: github.ref == 'refs/heads/sim' 
 
     steps:
       - uses: actions/download-artifact@v4
