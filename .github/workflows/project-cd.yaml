@@ -13,7 +13,7 @@ jobs:
   deploy:
     name: Deploy to ${{ vars.GITHUB_ENV }}
     runs-on: ubuntu-latest
-    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'sim' }}
+    environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'pre-prod' }}
     needs: build
 
     steps:
