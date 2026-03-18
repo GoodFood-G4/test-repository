@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/build-project.yaml
 
   deploy:
-    name: Deploy to ${{ vars.GITHUB_ENV }}
+    name: Deploy to ${{ github.ref == 'refs/heads/main' && 'Prod' || 'Pre-prod' }}
     runs-on: ubuntu-latest
     environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'pre-prod' }}
     needs: build
@@ -21,10 +21,10 @@ jobs:
         with:
           name: build-artifact
 
-      - name: Simulate ${{ vars.GITHUB_ENV }} deployment
+      - name: Simulate ${{ github.ref == 'refs/heads/main' && 'Prod' || 'Pre-prod' }} deployment
         run: |
           echo "======================"
-          echo "DEPLOYMENT - ${{ vars.GITHUB_ENV }}"
+          echo "DEPLOYMENT - ${{ github.ref == 'refs/heads/main' && 'PROD' || 'PRE-PROD' }}"
           echo "Deploying release to server ${{ vars.WEB_APP_NAME }}"
           echo "Restarting services"
           echo "======================"
