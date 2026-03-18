@@ -17,6 +17,7 @@ jobs:
 
       - name: Simulate build
         run: |
+          echo "github.ref: ${{ github.ref }}"
           echo "======================"
           echo "BUILD STAGE"
           echo "Installing dependencies"
